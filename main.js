@@ -59,7 +59,6 @@ var favorites = {
   goToFavorite: function() {
     favorites.getFavDir('Which Directory?', favorites.getFavDirFile(), (result) => {
       var path = favorites.fs.normalize(result);
-      console.log(path);
       var match = path.match(/\{\{(.*)\}\}/);
       if(match !== null) {
         var shortDirs = new String(favorites.fs.readFile(favorites.getFavAliasFile())).split('\n');
@@ -69,7 +68,6 @@ var favorites = {
         });
         path = favorites.fs.appendPath(sdir[0].split('|')[1],path.slice(match[0].length+1,path.length));
       }
-      console.log(path);
       favorites.extMan.getExtCommand('changeDir').command({
         path: path
       });
@@ -90,11 +88,11 @@ var favorites = {
         if(el.includes('|')) {
           var parts = el.split('|');
           if(ndir.includes(parts[1])) {
-            ndir.replace(parts[1],'{{'+parts[0]+'}}');
+            ndir = ndir.replace(parts[1],'{{'+parts[0]+'}}');
           }
         }
       });
-
+      
       //
       // Create and add the new favorite.
       //
@@ -123,7 +121,7 @@ var favorites = {
       var line = result.trim() + '|' + ndir;
       sdirs.push(line);
       sdirs = favorites.clearEmpties(sdirs);
-      favorites.fs.writeFile(favorites.getFavAliasFile,sdirs.join('\n'));
+      favorites.fs.writeFile(favorites.getFavAliasFile(),sdirs.join('\n'));
     });
   },
   deleteFavorite: function() {
