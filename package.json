@@ -1,0 +1,21 @@
+{
+  "name": "favorites",
+  "version": "1.0.0",
+  "description": "Favorite directory locations.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "modalfilemanager"
+  ],
+  "author": "Richard Guay",
+  "license": "MIT",
+  "mfmextension": {
+    "name": "Favorites",
+    "description": "Favorite directory locations.",
+    "type": 0,
+    "github": "",
+    "main": "main.js"
+  }
+}
